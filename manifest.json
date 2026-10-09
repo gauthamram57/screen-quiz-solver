@@ -14,5 +14,8 @@
     "https://openrouter.ai/*",
     "https://generativelanguage.googleapis.com/*",
     "https://api.groq.com/*"
-  ]
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
 }
