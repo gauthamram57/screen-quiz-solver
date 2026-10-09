@@ -1,6 +1,6 @@
 {
   "name": "screen-quiz-solver",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Chrome extension that scans quiz text/screenshot and shows tiny answers in a customizable bottom bar using Groq, OpenRouter & Gemini keys.",
   "scripts": {
     "test": "node --test tests/*.test.js",
