@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ScreenQuizSolver</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      width: 280px;
+      font: 12px/1.4 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 12px;
+      background: #111827;
+      color: #f3f4f6;
+      margin: 0;
+    }
+    h3 {
+      margin: 0 0 2px 0;
+      font-size: 15px;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    small {
+      color: #9ca3af;
+      display: block;
+      margin-bottom: 8px;
+    }
+    label {
+      display: block;
+      margin: 8px 0 3px;
+      color: #d1d5db;
+      font-weight: 500;
+      font-size: 11px;
+    }
+    input[type="text"], input[type="password"], input[type="number"], select {
+      width: 100%;
+      padding: 6px 8px;
+      background: #1f2937;
+      color: #f9fafb;
+      border: 1px solid #374151;
+      border-radius: 5px;
+      font-size: 12px;
+      outline: none;
+    }
+    input:focus, select:focus {
+      border-color: #10b981;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .checkbox-label input {
+      width: auto;
+      margin: 0;
+    }
+    .slider-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+    input[type="range"] {
+      width: 100%;
+      margin: 4px 0;
+      accent-color: #10b981;
+    }
+    .row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    button {
+      flex: 1;
+      padding: 8px;
+      background: #10b981;
+      color: #064e3b;
+      border: 0;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    button:hover {
+      background: #34d399;
+    }
+    button.ghost {
+      background: #374151;
+      color: #f3f4f6;
+    }
+    button.ghost:hover {
+      background: #4b5563;
+    }
+    #status {
+      margin-top: 8px;
+      color: #fbbf24;
+      font-size: 11px;
+      min-height: 14px;
+      text-align: center;
+    }
+    .footer-hints {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #1f2937;
+      color: #6b7280;
+      font-size: 10.5px;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+<body>
+  <h3>ScreenQuizSolver</h3>
+  <small>Fast, discreet AI quiz assistant</small>
+
+  <label for="provider">Provider</label>
+  <select id="provider">
+    <option value="groq">Groq — Recommended (fast, free text)</option>
+    <option value="openrouter">OpenRouter (vision & free models)</option>
+    <option value="gemini">Google Gemini (multimodal free tier)</option>
+  </select>
+
+  <label for="apiKey">API Key</label>
+  <input id="apiKey" type="password" placeholder="Paste your API key here">
+
+  <label for="model">Model</label>
+  <select id="model"></select>
+
+  <label class="checkbox-label">
+    <input id="useScreenshot" type="checkbox">
+    <span>Use screenshot (vision) + page text</span>
+  </label>
+
+  <div class="slider-row">
+    <label>Font size: <span id="fsVal">11</span>px</label>
+  </div>
+  <input id="fontSize" type="range" min="8" max="18" step="1">
+
+  <div class="slider-row">
+    <label>Opacity: <span id="opVal">0.88</span></label>
+  </div>
+  <input id="opacity" type="range" min="0.4" max="1" step="0.05">
+
+  <label for="position">Bar Position</label>
+  <select id="position">
+    <option value="bottom">Bottom</option>
+    <option value="top">Top</option>
+  </select>
+
+  <label for="autoScanSec">Auto-scan interval (sec, 0 = disabled)</label>
+  <input id="autoScanSec" type="number" min="0" max="120">
+
+  <div class="row">
+    <button id="scan">Scan now</button>
+    <button id="toggle" class="ghost">Show/Hide</button>
+  </div>
+  <div class="row">
+    <button id="save" class="ghost">Save Settings</button>
+  </div>
+
+  <div id="status"></div>
+
+  <div class="footer-hints">
+    <b>Alt+S</b> scan • <b>Alt+H</b> toggle • <b>CopyQ</b> copies question<br>
+    MCQ &rarr; "Q1: Opt 2" • Fill-ins &rarr; 1-2 words
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
