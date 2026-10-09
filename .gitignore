@@ -1,0 +1,26 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependencies and caches
+node_modules/
+.npm/
+
+# Build artifacts and zips
+dist/
+*.zip
+*.tar.gz
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Antigravity / Scratch
+scratch/
